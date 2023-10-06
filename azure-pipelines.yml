@@ -55,6 +55,6 @@ steps:
     inputs:
       packageType: 'nuget'
       feed: '/3468a477-489b-4e8e-831b-86886ea924e2'
-      definition: 'a112bf70-7d7a-4d38-b172-934338893aa5'
+      definition: 'MobileFabric.Core'
       version: 'latest'
       downloadPath: '$(System.ArtifactsDirectory)'
