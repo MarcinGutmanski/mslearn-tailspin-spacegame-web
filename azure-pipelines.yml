@@ -10,3 +10,12 @@ variables:
 steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
+  
+- task: DownloadPackage@1
+  inputs:
+    packageType: 'nuget'
+    feed: '/3468a477-489b-4e8e-831b-86886ea924e2'
+    view: '42e16011-3912-4caf-bd22-653a5ce3fbb0'
+    definition: 'a112bf70-7d7a-4d38-b172-934338893aa5'
+    version: '1.0.4'
+    downloadPath: '$(System.ArtifactsDirectory)'
