@@ -32,6 +32,14 @@ steps:
   - script: 'echo "$(Build.DefinitionName), $(Build.BuildId), $(Build.BuildNumber)" > buildinfo.txt'
     displayName: "Write build info"
     workingDirectory: $(wwwrootDir)
+    
+  - task: DownloadPackage@1
+    inputs:
+      packageType: 'nuget'
+      feed: '/3468a477-489b-4e8e-831b-86886ea924e2'
+      definition: 'MobileFabric.Core'
+      version: 'latest'
+      downloadPath: '$(System.ArtifactsDirectory)'
 
   - task: DotNetCoreCLI@2
     displayName: "Restore project dependencies"
@@ -51,10 +59,3 @@ steps:
     displayName: "Publish Artifact: drop"
     condition: succeeded()
     
-  - task: DownloadPackage@1
-    inputs:
-      packageType: 'nuget'
-      feed: '/3468a477-489b-4e8e-831b-86886ea924e2'
-      definition: 'MobileFabric.Core'
-      version: 'latest'
-      downloadPath: '$(System.ArtifactsDirectory)'
