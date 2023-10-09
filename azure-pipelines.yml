@@ -20,9 +20,6 @@ steps:
     inputs:
       verbose: false
 
-  - script: dotnet restore --source "https://pkgs.dev.azure.com/MarcinGutmanski/PipelineTestProject/_packaging/MobileFabric/nuget/v3/index.json"
-    displayName: "Add Packages in MobileFabric feed"
-
   - script: "./node_modules/.bin/node-sass $(wwwrootDir) --output $(wwwrootDir)"
     displayName: "Compile Sass assets"
 
@@ -34,6 +31,7 @@ steps:
     workingDirectory: $(wwwrootDir)
     
   - task: DownloadPackage@1
+    displayName: "Download Packages from MobileFabric Feed"
     inputs:
       packageType: 'nuget'
       feed: '/3468a477-489b-4e8e-831b-86886ea924e2'
